@@ -246,7 +246,11 @@ async function getFirebase(){
     const version='13.0.0';const base=`https://www.gstatic.com/firebasejs/${version}/`;
     const [app,auth,firestore]=await Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]);
     const application=app.initializeApp(window.BUSINESS_EMPIRE_FIREBASE_CONFIG);
-    const a=auth.getAuth(application);db=firestore.initializeFirestore(application, {
+  const a=auth.getAuth(application);
+db=firestore.initializeFirestore(application, {
+  experimentalAutoDetectLongPolling: true,
+  useFetchStreams: false
+});
   experimentalAutoDetectLongPolling: true,
   useFetchStreams: false
 });
