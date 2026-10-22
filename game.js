@@ -248,7 +248,7 @@ async function getFirebase(){
     const application=app.initializeApp(window.BUSINESS_EMPIRE_FIREBASE_CONFIG);
   const a=auth.getAuth(application);
 db=firestore.initializeFirestore(application, {
-  experimentalAutoDetectLongPolling: true,
+  experimentalForceLongPolling: true,
   useFetchStreams: false
 });
     if(!a.currentUser)await auth.signInAnonymously(a);
