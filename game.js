@@ -251,9 +251,6 @@ db=firestore.initializeFirestore(application, {
   experimentalAutoDetectLongPolling: true,
   useFetchStreams: false
 });
-  experimentalAutoDetectLongPolling: true,
-  useFetchStreams: false
-});
     if(!a.currentUser)await auth.signInAnonymously(a);
     authUser=a.currentUser;
     firebase={firestore,auth};return firebase;
