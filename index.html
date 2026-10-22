@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1020" />
+  <title>Business Empire · Billionaire Race</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="brand-icon">BE</div><div><h1>Business <span>Empire</span></h1><p>Build. Trade. Dominate.</p></div></div>
+    <div class="top-actions"><span class="version">V 0.5</span><span id="mode-badge" class="mode-badge">● SOLO MODE</span><button id="open-multiplayer" class="btn btn-outline">♧ Multiplayer</button></div>
+  </header>
+  <section class="hero">
+    <div><div class="eyebrow">THE BILLIONAIRE RACE</div><h2>Build your <em>empire.</em></h2><p>Turn a small investment into a billion-dollar dynasty. Own companies, invest in the market, and outgrow the competition.</p></div>
+    <div class="goal-box"><span>YOUR MISSION</span><strong>$1,000,000,000</strong><small>Net worth to win</small></div>
+  </section>
+  <section class="stats" aria-label="Your empire stats">
+    <div class="stat"><span class="stat-label">AVAILABLE CASH</span><strong id="cash">$10,000</strong><small>Ready to invest</small></div>
+    <div class="stat"><span class="stat-label">NET INCOME / SEC</span><strong id="income">$0</strong><small>After wages &amp; interest</small></div>
+    <div class="stat"><span class="stat-label">TOTAL NET WORTH</span><strong id="worth">$10,000</strong><small id="worth-change">Your total assets</small></div>
+    <div class="stat"><span class="stat-label">STOCK PORTFOLIO</span><strong id="portfolio-stat">$0</strong><small id="portfolio-shares">0 shares owned</small></div>
+  </section>
+  <div class="main-grid">
+    <main class="main-col">
+      <nav class="tabs" aria-label="Game sections">
+        <button class="tab active" data-tab="businesses">🏪 Businesses</button>
+        <button class="tab" data-tab="stocks">📈 Stocks</button>
+        <button class="tab" data-tab="property">🏙️ Real Estate</button>
+        <button class="tab" data-tab="operations">⚙️ Operations</button>
+      </nav>
+      <section id="tab-businesses" class="tab-panel active"><div class="section-head"><div><h2>Business Marketplace</h2><p>Purchase and expand your companies to earn passive income every second.</p></div><span class="counter" id="owned-businesses">0 businesses</span></div><div class="business-grid" id="businesses"></div></section>
+      <section id="tab-stocks" class="tab-panel"><div class="section-head"><div><h2>Stock Exchange</h2><p>10 fictional companies. Prices refresh every 10 seconds. Watch their history before trading.</p></div><span class="counter" id="next-market">Next update in 10s</span></div>
+        <div class="stock-toolbar"><div><span>PORTFOLIO VALUE</span><strong id="portfolio-value">$0</strong><small id="stock-holdings">0 shares across 0 companies</small></div><button id="sell-portfolio" class="btn btn-danger">Sell entire portfolio</button></div>
+        <div class="stock-chart-panel"><div class="chart-head"><div><div id="chart-ticker" class="eyebrow">PXL · PIXELTECH</div><div class="chart-number"><strong id="chart-price">$120</strong><span id="chart-change" class="price-up">+0.0%</span></div></div><div class="chart-helper">Recent price history · fictional market</div></div><div id="large-chart" class="large-chart" role="img" aria-label="Selected stock price history chart"></div><div id="chart-range" class="chart-range"></div></div>
+        <div id="stocks" class="stocks-list"></div></section>
+      <section id="tab-property" class="tab-panel"><div class="section-head"><div><h2>Real Estate</h2><p>Own buildings and collect rent while your empire grows.</p></div></div><div id="properties" class="item-grid"></div></section>
+      <section id="tab-operations" class="tab-panel"><div class="section-head"><div><h2>Business Operations</h2><p>Hire staff, use loans carefully, and monitor your whole business.</p></div></div><div class="item-grid"><div class="content-card"><h3>👥 Your Employees</h3><p>Employees increase business income by 8% each, but cost $35/second in wages.</p><div id="employees"></div></div><div class="content-card"><h3>🏦 Business Loans</h3><p>Borrow $10,000 at a time. Unpaid debt charges interest every second.</p><div id="loans"></div></div><div class="content-card full"><h3>📊 Empire Breakdown</h3><div id="breakdown"></div></div></div></section>
+    </main>
+    <aside class="sidebar">
+      <section class="side-panel leaderboard-panel"><div class="side-head"><h3>🏆 Leaderboard</h3><span class="live" id="leaderboard-status">SOLO</span></div><div id="leaderboard"></div><p class="footnote" id="leaderboard-desc">AI rivals in solo mode. Create a room to compete with real friends.</p></section>
+      <section class="side-panel progress-panel"><div class="side-head"><h3>🎯 Billionaire Goal</h3></div><strong id="goal-percentage">0.00%</strong><div class="progress-track" role="progressbar" aria-label="Progress to one billion dollars" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><div id="progress-fill"></div></div><p id="progress-remaining">$999,990,000 to go</p></section>
+      <section class="side-panel room-panel"><div class="side-head"><h3>🌐 Friends &amp; Rooms</h3></div><div id="room-summary"><p>Bring your friends into the billionaire race. Each player manages their own empire.</p><button class="btn btn-primary full-width" id="room-cta">Create or join room →</button></div></section>
+      <section class="side-panel utility-panel"><button class="btn btn-outline full-width" id="reset">↺ Reset current empire</button><p class="footnote">Auto-saved in this browser. This is a fictional economy with no real-money trading.</p></section>
+    </aside>
+  </div>
+  <footer>BUSINESS EMPIRE © 2026 · V0.5 · BUILT FOR THE BILLIONAIRE RACE <span>Local solo play works without an account. Multiplayer uses Firebase.</span></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop hidden" id="multiplayer-modal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><div><span class="eyebrow">PRIVATE FRIENDS LOBBY</span><h2 id="modal-title">Play with friends</h2></div><button class="close-btn" id="close-multiplayer" aria-label="Close multiplayer dialog">×</button></div><p class="modal-copy">Race friends to $1 billion. Each player starts with $10,000 in a separate room empire. The leaderboard updates live, and everyone in the same room sees the same stock prices.</p><div id="multiplayer-config-status" class="setup-alert"></div><label for="player-name">Your display name</label><input id="player-name" maxlength="20" placeholder="Your name" autocomplete="nickname" /><div class="modal-actions"><button class="btn btn-primary" id="create-room">Create private room</button><span>or join a room</span></div><div class="join-row"><input id="room-code-input" maxlength="8" placeholder="8-character room code" aria-label="Room invite code" /><button class="btn btn-outline" id="join-room">Join room</button></div><div id="room-details" class="room-details hidden"><span class="eyebrow">CURRENT ROOM</span><strong id="room-code-display"></strong><div class="room-buttons"><button class="btn btn-outline" id="copy-room-link">Copy invite link</button><button class="btn btn-danger" id="leave-room">Leave room</button></div></div><p class="tiny" id="room-message">The room code lets friends join. Only share it with people you trust.</p></section></div>
+<script src="firebase-config.js"></script>
+<script type="module" src="game.js"></script>
+</body></html>
